@@ -6,28 +6,32 @@ int _count = 0;
 int m_is_available() {
 	int i;
 	for( i = 0; i < MAX_STUDENTS; i++) {
-		if (students[i] == NULL)
+		if (students[i] == NULL){
 #ifdef DEBUG
 		printf("[Debug] 추가할 수 있는 데이터 공간이 있음. m_is_available\n");
 #endif
 			return 1;
-	}
+		}
+	}	
 #ifdef DEBUG
 	printf("[Debug] 추가할 수 있는 데이터 공간이 없음. m_is_available\n");
 #endif
 	return 0;
+
 }
 
 int m_first_available() {
 	int i;
 	for (i = 0; i < MAX_STUDENTS; i++) {
-		if (students[i] == NULL)
+		if (students[i] == NULL) {
 #ifdef DEBUG
 		printf("[Debug] found first available index. m_first_available\n");
 #endif
 			return i;
+		}
 	}
 	return -1;
+
 }
 
 int m_count () {
@@ -36,6 +40,7 @@ int m_count () {
 #endif
 	return _count;
 }
+
 
 void m_create(char* n, char* g, char* b, int sn, char* m) {
 	int index = m_first_available();
@@ -51,6 +56,7 @@ void m_create(char* n, char* g, char* b, int sn, char* m) {
 #ifdef DEBUG
 	printf("[Debug] %s m_create \n", n);
 #endif
+
 }
 
 T_Dorm* m_search_by_name(char* n) {
@@ -63,15 +69,29 @@ T_Dorm* m_search_by_name(char* n) {
 	printf("[Debug] didn't find same name with %s. m_search_by_name\n", n);
 #endif
 	return NULL;
+
+}
+
+void m_update(T_Dorm* p, char* g, char* b, int sn, char* m) {
+	strcpy(p->gender, g);
+	strcpy(p->building, b);
+	p->studentNumber = sn;
+	strcpy(p->major, m);
+#ifdef DEBUG
+	printf("[Debug] m_update \n");
+#endif
+
 }
 
 char* m_to_string(T_Dorm* p) {
 	static char str[80];
 	sprintf(str, "%s / %s / %s / %d학번 / %s", p->name, p->gender, p->building, p->studentNumber, p->major);
+
 #ifdef DEBUG
 	printf("[Debug] m_to_string\n");
 #endif
 	return str;
+
 }
 
 void  m_get_all(T_Dorm* a[]) {
@@ -80,11 +100,11 @@ void  m_get_all(T_Dorm* a[]) {
 		if(students[i] != NULL) {
 			a[c] = students[i];
 			c++;
+		}
+	}
 #ifdef DEBUG
 			printf("[Debug] m_get_all\n");
 #endif
-		}
-	}
 }
 
 char* m_getname(T_Dorm* p) {
@@ -130,6 +150,7 @@ int m_get_all_by_gender(T_Dorm* a[], char* g) {
 		}
 	}
 	return c;
+
 }
 
 int m_get_all_by_building(T_Dorm* a[], char* b) {
@@ -141,6 +162,7 @@ int m_get_all_by_building(T_Dorm* a[], char* b) {
 		}
 	}
 	return c;
+
 }
 
 void m_init() {
@@ -156,6 +178,7 @@ void m_init() {
 #ifdef DEBUG
 	printf("[Debug] all records are removed. m_init\n");
 #endif
+
 }
 
 char* m_to_string_save(T_Dorm* p) {
@@ -165,4 +188,5 @@ char* m_to_string_save(T_Dorm* p) {
 	printf("[Debug] m_to_string_save\n");
 #endif
 	return str;
+
 }
