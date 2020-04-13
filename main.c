@@ -5,6 +5,7 @@
 void create_record();
 void read_record();
 void update_record();
+void delete_record();
 void list_record();
 void search_name();
 void search_gender();
@@ -29,8 +30,8 @@ int main() {
 				update_record();
 				break;
 			case 4:
-				
-
+				delete_record();
+				break;	
 			case 5:
 				list_record();
 				break;
@@ -120,6 +121,21 @@ void update_record() {
 		scanf("%s", major);
 		
 		m_update(p, gender, building, studentnumber, major);
+	}
+	else {
+		printf("No such student!\n");
+	}
+}
+
+void delete_record() {
+	char name[20];
+	printf("Enter a name > ");
+	scanf("%s" , name);
+
+	T_Dorm* p = m_search_by_name(name);
+	if (p) {
+		m_delete(p);
+		printf("The information of %s is deleted!\n", name);
 	}
 	else {
 		printf("No such student!\n");
