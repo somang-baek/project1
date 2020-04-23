@@ -3,5 +3,7 @@ CRUD mini project - 기숙사 거주 학생의 정보를 Create, Read, Update, D
 
 build & run 방법
 
+
   make main
+  
   ./main
