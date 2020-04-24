@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_STUDENTS 5
+#define MAX_STUDENTS 60
 
 typedef struct st_dorm{
 	char name[20];
@@ -36,3 +36,5 @@ int m_get_all_by_building(T_Dorm* a[], char* b);
 
 void m_init();	// 모든 레코드 제거
 char* m_to_string_save(T_Dorm* p);	// 특정 회원 레코드의 내용을 파일저장용 문자열로 가져오기
+
+void m_remove_blank();	// 레코드 중 빈 곳을 끝으로 몰아주기
